@@ -1,0 +1,38 @@
+{% extends 'cec/base.html' %}
+
+{% block title %}
+All Surveys
+{% endblock %}
+
+{% block content %}
+    <table>
+        <tr> <h1>All Surveys</h1></tr>
+        {% for survey in list_of_surveys %}
+                <tr>
+                    <td>
+                        {{survey.title}}</li><br>
+                    </td>
+                    <td>
+                        <form method = "post" action = "http://127.0.0.1:8000/carbon_emissions_calculator/survey={{survey.title}}/all/">
+                            {% csrf_token %}
+                            <br><button type="submit", name="save" class="btn btn-info">View Records</button>
+                        </form><br>
+                    </td>
+                    <td>
+                        <form method = "post" action = "http://127.0.0.1:8000/carbon_emissions_calculator/survey={{survey.title}}/report/">
+                            {% csrf_token %}
+                            <br><button type="submit", name="save" class="btn btn-primary">See Report</button>
+                        </form><br>
+                    </td>
+                </tr>
+        {%endfor%}
+    </table>
+        <form method = "post" action = "http://127.0.0.1:8000/carbon_emissions_calculator/new_entry/"><br>
+            {% csrf_token %}
+            <button type="submit", name="save" class="btn btn-success">Add New Entry</button>
+        </form>
+        <form method = "post" action = "http://127.0.0.1:8000/carbon_emissions_calculator/home/"><br>
+            {% csrf_token %}
+            <button type="submit", name="save" class="btn btn-primary">Back to Homepage</button>
+        </form>
+{% endblock %}

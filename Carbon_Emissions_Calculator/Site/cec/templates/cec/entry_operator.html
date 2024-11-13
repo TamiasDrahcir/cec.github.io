@@ -1,0 +1,20 @@
+{% extends 'cec/base.html' %}
+
+{% block title %}
+Operator Survey
+{% endblock %}
+
+{% block content %}
+<body>
+    {% if user.account_type == 'Operator' %}
+        <form method="post" action="http://127.0.0.1:8000/carbon_emissions_calculator/operator_survey/submitted/" enctype="multipart/form-data">
+            {% csrf_token %}
+            <h2>Select & Upload File</h2><br>
+            <input type="file" required name="files"><br><br>
+            <button type="submit" class="btn btn-primary">Submit</button> 
+        </form>
+    {% else %}
+        <h1>Access Restricted</h1>
+    {% endif %}
+</body>
+{% endblock %}

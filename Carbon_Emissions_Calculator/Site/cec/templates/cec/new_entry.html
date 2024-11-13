@@ -1,0 +1,43 @@
+{%extends 'cec/base.html'%}
+
+{% block title %} New Entry {% endblock %}
+
+{% block content %} 
+<h2>Please select way of transportation </h2><br>
+
+<form method="post" action= "http://127.0.0.1:8000/carbon_emissions_calculator/plane_survey/" class="form-group">
+    {% csrf_token %}
+    <div class="input-group mb-3">
+        <button type="submit", name="save" class="btn btn-info btn-lg">Plane</button>
+    </div>
+</form>
+
+<form method="post" action= "http://127.0.0.1:8000/carbon_emissions_calculator/train_survey/" class="form-group">
+    {% csrf_token %}
+    <div class="input-group mb-3">
+        <button type="submit", name="save" class="btn btn-success btn-lg">Train</button>
+    </div>
+</form>
+
+<form method="post" action= "http://127.0.0.1:8000/carbon_emissions_calculator/other_survey/" class="form-group">
+    {% csrf_token %}
+    <div class="input-group mb-3">
+        <button type="submit", name="save" class="btn btn-secondary btn-lg">Other</button>
+    </div>
+</form>
+
+<form method="post" action= "http://127.0.0.1:8000/carbon_emissions_calculator/none_survey_confirm/" class="form-group">
+    {% csrf_token %}
+    <div class="input-group mb-3">
+        <button type="submit", name="save" class="btn btn-warning btn-lg">No intercity/international transportation</button>
+    </div>
+</form>
+
+<form method="post" action= "http://127.0.0.1:8000/carbon_emissions_calculator/all_surveys/" class="form-group">
+    {% csrf_token %}
+    <div class="input-group mb-3">
+        <button type="submit", name="save" class="btn btn-primary">Back to All Surveys</button>
+    </div>
+</form>
+
+{% endblock %}

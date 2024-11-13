@@ -1,0 +1,35 @@
+{%extends 'cec/base.html'%}
+
+{% block title %} Survey - Train {% endblock %}
+
+{% block content %} 
+<h2>Train Survey</h2><br>
+
+<form method="post" action= "http://127.0.0.1:8000/carbon_emissions_calculator/train_entry_finished/" class="form-group">
+    {% csrf_token %}
+    <h4>{{form.as_p}}</h4>
+    <h4><input type="text" name="departure" id="departure" list="stations" placeholder="Please enter station of departure" class = "form-control" required></h4>
+    <datalist id="stations">
+        {% for station in stations %}
+            <option value="{{station.name}}"></option>
+        {% endfor %}
+    </datalist>
+
+    <h4><input type="text" name="arrival" id="arrival" list="stations" placeholder="Please enter station of arrival" class = "form-control" required></h4>
+    <datalist id="stations">
+        {% for station in stations %}
+            <option value="{{station.name}}"></option>
+        {% endfor %}
+    </datalist><br>
+    <div class="input-group mb-3">
+        <button type="submit", name="save" class="btn btn-success">Create New Entry</button>
+    </div>
+</form>
+
+<form method="post" action= "http://127.0.0.1:8000/carbon_emissions_calculator/new_entry/" class="form-group">
+    {% csrf_token %}
+    <div class="input-group mb-3">
+        <button type="submit", name="save" class="btn btn-primary">Choose another way of transportation</button>
+    </div>
+</form>
+{% endblock %}

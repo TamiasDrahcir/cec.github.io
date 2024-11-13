@@ -1,0 +1,12 @@
+{%extends 'cec/base.html'%}
+
+{% block content %}
+<h1>Thank you for filling out the survey!</h1><br>
+<h2>Your trip generated {{result}} kgCO2e</h2><br>
+<form method="post" action="http://127.0.0.1:8000/carbon_emissions_calculator/home/">
+    {% csrf_token %}
+    <div class="input-group mb-3"> 
+        <button type="submit", name="save" class="btn btn-primary">Back to Home Page</button>
+    </div>
+</form>
+{% endblock %}

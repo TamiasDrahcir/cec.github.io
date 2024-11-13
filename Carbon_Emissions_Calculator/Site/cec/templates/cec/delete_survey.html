@@ -1,0 +1,25 @@
+
+{%extends 'cec/base.html'%}
+{% block content %}
+    <body>
+    {% if user.account_type == 'Administrator' %}
+    <h2><strong>Title:</strong> {{obj.title}}
+
+    <form method="post" action= "http://127.0.0.1:8000/carbon_emissions_calculator/admin_page/survey_deleted/survey={{obj.title}}/" class="form-group">
+        {% csrf_token %}
+        <h2><strong>{{form.as_p}}</strong></h2>
+        <div class="input-group mb-3">
+            <button type="submit", name="save" class="btn btn-danger">Delete</button>
+        </div>
+    </form>
+    <form method="post" action= "http://127.0.0.1:8000/carbon_emissions_calculator/admin_survey/" class="form-group">
+        {% csrf_token %}
+        <div class="input-group mb-3">
+            <button type="submit", name="save" class="btn btn-primary">Back</button>
+        </div>
+    </form>
+    {% else %}
+        <h1>Access Restricted</h1>
+    {% endif %}
+    </body>
+{% endblock %}

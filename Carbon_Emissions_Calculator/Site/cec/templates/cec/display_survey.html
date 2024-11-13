@@ -1,0 +1,19 @@
+{% extends 'cec/base.html' %}
+
+{% block title %}
+Display Survey
+{% endblock %}
+
+{% block content %}
+    {% if length == 0 %}
+        <h3>No records</h3>
+    {% else %}
+        {% for entry in ls.entry_set.all %}
+                {{entry.to_str}}
+        {%endfor%}
+        <br><form method = "post" action = "http://127.0.0.1:8000/carbon_emissions_calculator/survey={{ls.title}}/all/">
+            {% csrf_token %}
+            <button type="submit" name="save" class="btn btn-primary">Back</button>
+        </form>
+    {% endif %}
+{% endblock %}

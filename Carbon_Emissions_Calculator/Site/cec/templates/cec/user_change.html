@@ -1,0 +1,23 @@
+
+{%extends 'cec/base.html'%}
+{% block content %}
+    <body>
+    {% if user.account_type == 'Administrator' %}
+    <h2><strong>Name:</strong> {{obj.username}}</h2><br>
+
+    <form method="post" action="http://127.0.0.1:8000/carbon_emissions_calculator/admin_page/user_changed/user={{name}}/" class="form-group">
+        {% csrf_token %}
+            <h2><strong>{{ form.as_p }}</strong></h2>
+            <button type="submit" name="save" class="btn btn-info">Change</button>
+    </form>
+    <form method="post" action= "http://127.0.0.1:8000/carbon_emissions_calculator/admin_user/" class="form-group">
+        {% csrf_token %}
+        <div class="input-group mb-3">
+            <button type="submit", name="save" class="btn btn-primary">Back to All Users</button>
+        </div>
+    </form>
+    {% else %}
+        <h1>Access Restricted</h1>
+    {% endif %}
+    </body>
+{% endblock %}

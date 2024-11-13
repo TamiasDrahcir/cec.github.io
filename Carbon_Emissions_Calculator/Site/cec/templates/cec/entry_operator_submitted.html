@@ -1,0 +1,14 @@
+{% extends 'cec/base.html' %}
+
+{% block title %}
+Submitting Operator File...
+{% endblock %}
+
+{% block content %}
+ <h1>File submitted!</h1><br>
+
+<form method = "post" action = "http://127.0.0.1:8000/carbon_emissions_calculator/home/">
+    {% csrf_token %}
+    <button type="submit", name="save" class="btn btn-primary">Back</button>
+</form>
+{% endblock %}

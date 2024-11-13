@@ -1,0 +1,14 @@
+{% extends 'cec/base.html' %}
+
+{% block title %}
+Survey Entry
+{% endblock %}
+
+{% block content %}
+ <h1>Successfully Edited</h1><br>
+
+ <form method="post" action="http://127.0.0.1:8000/carbon_emissions_calculator/admin_entry/"><br>
+    {% csrf_token %}
+    <button type="submit", name="save" class = "btn btn-primary">Back to Entries</button>
+</form>
+{% endblock %}

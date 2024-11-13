@@ -1,0 +1,84 @@
+
+{%extends 'cec/base.html'%}
+
+{% block content %}
+    <body>
+    {% if user.account_type == 'Administrator' %}
+    <h2><strong>Entries</strong></h2><br>
+    <form method = "post" action = "http://127.0.0.1:8000/carbon_emissions_calculator/admin_page/entry_organize/redirect/">
+        {% csrf_token %}
+        <div class="box"> 
+            <h2><strong>Filter</strong></h2><br>
+            <h3><strong>Survey: {{form.survey}}</strong></h3>
+            <h3><strong>Transportation: {{form.transportation}}</strong></h3>
+            <h3><strong>Review: {{form.only_review}}</strong></h3><br><br>
+            <h2><strong>Sort</strong></h2><br>
+            <h3><strong>Category: {{form.category}}</strong></h3>
+            <h3><strong>Order: {{form.order}}</strong></h3>
+            <br><button type="submit", name="save" class="btn btn-success btn-lg">Submit</button>
+        </div>
+    </form><br>
+    <table border="1">
+        <thead>
+            <th>
+                <h3>Survey</h3>
+            </th>
+            <th>
+                <h3>Transportation</h3>
+            </th>
+            <th>
+                <h3>Start</h3>
+            </th>
+            <th>
+                <h3>End</h3>
+            </th>
+            <th>
+                <h3>Identification</h3>
+            </th>
+            <th>
+                <h3>Carbon Emissions</h3>
+            </th>
+            <th>
+                <h3>Further Review</h3>
+            </th>
+
+        </thead>
+        {% for entry in list_of_entries %}
+            <tr>
+            {% if entry.further_review == True %}
+                    <td class="check"><strong>{{entry.survey.title}}</strong></td>
+                    <td class="check"><strong>{{entry.transportation}}</strong></td>
+                    <td class="check"><strong>{{entry.start}}</strong></td>
+                    <td class="check"><strong>{{entry.end}}</strong></td>
+                    <td class="check"><strong>{{entry.identification}}</strong></td>
+                    <td class="check"><strong>{{entry.carbon_emissions}}</strong></td>
+                    <td class="check"><strong>{{entry.further_review}}</strong></td>
+            {% else %}
+                    <td>{{entry.survey.title}}</td>
+                    <td>{{entry.transportation}}</td>
+                    <td>{{entry.start}}</td>
+                    <td>{{entry.end}}</td>
+                    <td>{{entry.identification}}</td>
+                    <td>{{entry.carbon_emissions}}</td>
+                    <td>{{entry.further_review}}</td>
+            {% endif %}
+                <td>
+                    <form method = "post" action = "http://127.0.0.1:8000/carbon_emissions_calculator/admin_page/entry={{entry.id}}/edit/">
+                        {% csrf_token %}
+                        <br><button type="submit", name="save" class="btn btn-info">Edit</button>
+                    </form><br>
+                </td>
+                <td>
+                    <form method = "post" action = "http://127.0.0.1:8000/carbon_emissions_calculator/admin_page/entry={{entry.id}}/delete/">
+                        {% csrf_token %}
+                        <br><button type="submit", name="save" class="btn btn-danger">Delete</button>
+                    </form><br>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+    {% else %}
+        <h1>Access Restricted</h1>
+    {% endif %}
+    </body>
+{% endblock %}

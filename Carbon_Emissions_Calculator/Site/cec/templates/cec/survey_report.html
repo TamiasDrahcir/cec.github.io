@@ -1,0 +1,164 @@
+{% extends 'cec/base.html' %}
+
+{% block content %}
+
+<h1>Traveling Report: {{title}}</h1><br><br>
+
+<table border="0">
+    <thead>
+        <th>
+            <h2>Overall Stats</h2>
+        </th>
+    </thead>
+    <thead>
+        <th>
+            Responses
+        </th>
+        <th>
+            {{responses}}
+        </th>
+    </thead>
+    <thead>
+        <th>
+            Users Responded
+        </th>
+        <th>
+            {{users_responded}}
+        </th>
+    </thead>
+    <thead>
+        <th>
+            Response Rate (%)
+        </th>
+        <th>
+            {{response_rate}}
+        </th>
+    </thead>
+    <thead>
+        <th>
+            Mobility (%)
+        </th>
+        <th>
+            {{mobility}}
+        </th>
+    </thead>
+    <thead>
+        <th>
+            Emissions (kgCO2e)
+        </th>
+        <th>
+            {{emission_sum}}
+        </th>
+    </thead>
+    <thead>
+        <th>
+            Emissions per capita (kgCO2e)
+        </th>
+        <th>
+            {{emission_pc}}
+        </th>
+    </thead>
+    <thead>
+        <th>
+            Validity Rate (%)
+        </th>
+        <th>
+            {{revrate}}
+        </th>
+    </thead>
+</table><br><br>
+
+<h2>Cohort Distribution of Responses:</h2><br>
+<table border="1">
+    <thead>
+        <th>
+            Cohort
+        </th>
+        <th>
+            Share(%)
+        </th>
+    </thead>
+    <tr>
+        <td>
+            FP
+        </td>
+        <td>
+            {{cohort_percentage.0}}
+        </td>
+    </tr>
+    <tr>
+        <td>
+            DP1
+        </td>
+        <td>
+            {{cohort_percentage.1}}
+        </td>
+    </tr>
+    <tr>
+        <td>
+            DP2
+        </td>
+        <td>
+            {{cohort_percentage.2}}
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Faculty
+        </td>
+        <td>
+            {{cohort_percentage.3}}
+        </td>
+    </tr>
+</table><br><br>
+
+<h2>Transportation Distribution of Responses:</h2><br>
+<table border="1">
+    <thead>
+        <th>
+            Transportation
+        </th>
+        <th>
+            Share(%)
+        </th>
+    </thead>
+    <tr>
+        <td>
+            Plane
+        </td>
+        <td>
+            {{transportation_percentage.0}}
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Train
+        </td>
+        <td>
+            {{transportation_percentage.1}}
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Other
+        </td>
+        <td>
+            {{transportation_percentage.2}}
+        </td>
+    </tr>
+    <tr>
+        <td>
+            None
+        </td>
+        <td>
+            {{transportation_percentage.3}}
+        </td>
+    </tr>
+</table>
+
+<br><form method = "post" action = "http://127.0.0.1:8000/carbon_emissions_calculator/all_surveys/">
+    {% csrf_token %}
+    <button type="submit", name="save" class="btn btn-primary">Back</button>
+</form>
+
+{% endblock %}

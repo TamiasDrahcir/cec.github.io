@@ -1,0 +1,25 @@
+{%extends 'cec/base.html'%}
+
+{% block title %} Survey - Other {% endblock %}
+
+{% block content %} 
+<h2>Other Survey</h2><br>
+
+<form method="post" action= "http://127.0.0.1:8000/carbon_emissions_calculator/other_entry_finished/" class="form-group">
+    {% csrf_token %}
+    <h4>{{form.survey.label}}: {{form.survey}}</h4><br>
+    <h4>{{form.cohort.label}}: {{form.cohort}}</h4><br>
+    <h4>{{form.identification.label}}: <br><br>{{form.identification}}</h4><br>
+    <div class="input-group mb-3">
+        <button type="submit", name="save" class="btn btn-success">Create New Entry</button>
+    </div>
+</form>
+
+<form method="post" action= "http://127.0.0.1:8000/carbon_emissions_calculator/new_entry/" class="form-group">
+    {% csrf_token %}
+    <div class="input-group mb-3">
+        <button type="submit", name="save" class="btn btn-primary">Choose another way of transportation</button>
+    </div>
+</form>
+
+{% endblock %}

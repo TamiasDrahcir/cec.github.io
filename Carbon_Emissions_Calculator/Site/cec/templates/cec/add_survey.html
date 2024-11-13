@@ -1,0 +1,21 @@
+{%extends 'cec/base.html'%}
+{% block content %}
+    <body>
+    {% if user.account_type == 'Administrator' %}
+        <h1>Add Survey</h1><br>
+        <form method = "post" action = "http://127.0.0.1:8000/carbon_emissions_calculator/admin_page/survey_added/">
+            {% csrf_token %}
+            <h2>Title: {{form.title}}</h2>
+            <h2>Opening: {{form.opening}}</h2>
+            <h2>Deadline: {{form.deadline}}</h2>
+            <br><button type="submit", name="save" class="btn btn-success">Add</button>
+        </form><br>
+        <form method="post" action="http://127.0.0.1:8000/carbon_emissions_calculator/admin_survey/">
+            {% csrf_token %}
+            <button type="submit", name="save" class = "btn btn-primary">Back to Surveys</button>
+        </form>
+    {% else %}
+        <h1>Access Restricted</h1>
+    {% endif %}
+    </body>
+{% endblock %}

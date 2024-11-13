@@ -1,0 +1,24 @@
+{% extends 'cec/base.html' %}
+
+{% block title %}
+Homepage
+{% endblock %}
+
+{% block content %}
+<h1>Welcome back to Carbon Emissions Calculator, {{user}}!</h1><br>
+
+{% for message in messages %}
+    <h3 class={{message.1}}>{{message.0}}</h3><br>
+{% endfor %}
+
+<form method="post" action= "http://127.0.0.1:8000/carbon_emissions_calculator/all_surveys/">
+    {% csrf_token %}
+    <button type="submit", name="signup" class = "btn btn-primary">All Surveys</button>
+</form><br>
+
+<form method="post" action= "http://127.0.0.1:8000/carbon_emissions_calculator/logout/">
+    {% csrf_token %}
+    <button type="submit", name="signup" class = "btn btn-warning">Logout</button>
+</form>
+
+{% endblock %}

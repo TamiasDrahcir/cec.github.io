@@ -1,0 +1,87 @@
+{% extends 'cec/base.html' %}
+
+{% block content %}
+
+<h1>Operation Report: {{report.Month_Text}} {{report.Year}}</h1>
+
+<br><h3>Emissions generated in student areas:</h3> 
+<h3 class="Urge">{{report.ELE_SUM}} kgCO2e</h3><br>
+<h3>Total emissions generated on campus: </h3>
+<h3 class="Urge">{{report.ALL_ELE}} kgCO2e</h3><br>
+<h3>Percentage of emissions generated in student areas: </h3>
+<h3 class="Urge">{{report.ELE_P}} %</h3>
+
+<br><h3>Emissions Generated, by building, by function (Unit: kgCO2e)</h3><br>
+<table border="1">
+    <thead>
+        <th></th>
+        <th>
+            Residential Building
+        </th>
+        <th>
+            Academics Building
+        </th>
+        <th>
+            Science Building
+        </th>
+        <th>
+            Theater Building
+        </th>
+        <th>
+            Gym Building
+        </th>
+        <th>
+            Total
+        </th>
+    </thead>
+    <tr>
+        <td><strong>Lights</strong></td>
+        <td>{{report.RESL}}</td>
+        <td>{{report.ACAL}}</td>
+        <td>{{report.SCIL}}</td>
+        <td>{{report.THEL}}</td>
+        <td>{{report.GYML}}</td>
+        <td>{{report.L_SUM}}</td>
+    </tr>
+    <tr>
+        <td><strong>Elevator</strong></td>
+        <td>{{report.RESE}}</td>
+        <td>{{report.ACAE}}</td>
+        <td>{{report.SCIE}}</td>
+        <td>{{report.THEE}}</td>
+        <td>{{report.GYME}}</td>
+        <td>{{report.E_SUM}}</td>
+    </tr>
+    <tr>
+        <td><strong>Air Conditioning</strong></td>
+        <td>{{report.RESA}}</td>
+        <td>{{report.ACAA}}</td>
+        <td>{{report.SCIA}}</td>
+        <td>{{report.THEA}}</td>
+        <td>NaN</td>
+        <td>{{report.A_SUM}}</td>
+    </tr>
+    <tr>
+        <td><strong>Total</strong></td>
+        <td>{{report.RES}}</td>
+        <td>{{report.ACA}}</td>
+        <td>{{report.SCI}}</td>
+        <td>{{report.THE}}</td>
+        <td>{{report.GYM}}</td>
+        <td>{{report.ELE_SUM}}</td>
+    </tr>
+
+</table><br>
+<h6><em>Additional Information:<br>
+    <ul>
+        <li>For some reasons, there are no records for Air Conditioning in the Gym Building</li>
+        <li>The total emissions in a building incldes components other than the three functions in the table, such as the shutter door</li>
+    </ul></em></h6>
+
+
+<form method = "post" action = "http://127.0.0.1:8000/carbon_emissions_calculator/operation_reports/">
+    {% csrf_token %}
+    <button type="submit", name="save" class="btn btn-primary">Back</button>
+</form>
+
+{% endblock %}

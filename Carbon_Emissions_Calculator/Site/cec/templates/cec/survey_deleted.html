@@ -1,0 +1,14 @@
+{% extends 'cec/base.html' %}
+
+{% block title %}
+Survey Entry Deleted
+{% endblock %}
+
+{% block content %}
+ <h1>Successfully Deleted</h1><br>
+
+ <form method="post" action="http://127.0.0.1:8000/carbon_emissions_calculator/admin_survey/"><br>
+    {% csrf_token %}
+    <button type="submit", name="save" class = "btn btn-primary">Back to Surveys</button>
+</form>
+{% endblock %}

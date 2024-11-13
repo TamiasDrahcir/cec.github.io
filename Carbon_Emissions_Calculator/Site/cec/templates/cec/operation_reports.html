@@ -1,0 +1,25 @@
+
+{%extends 'cec/base.html'%}
+{% block content %}
+    <body>
+    <table border="0">
+        <thead>
+            <th>
+                <h4>Name</h4>
+            </th>
+            <th>
+                <h4>View</h4>
+            </th>
+        </thead>
+        {% for report in reports %}
+            <tr>
+                <td><h5>{{report.Month_Text}} {{report.Year}}</h5></td>
+                <td><form method = "post" action = "http://127.0.0.1:8000/carbon_emissions_calculator/operation_report/{{report.Year}}/{{report.Month}}/">
+                    {% csrf_token %}
+                    <br><button type="submit", name="save" class="btn btn-info">View</button>
+                </form><br></td>
+            </tr>
+        {% endfor %}
+    </table>
+    </body>
+{% endblock %}

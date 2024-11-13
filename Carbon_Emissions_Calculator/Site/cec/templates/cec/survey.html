@@ -1,0 +1,34 @@
+{% extends 'cec/base.html' %}
+
+{% block title %}
+Display Survey
+{% endblock %}
+
+{% block content %}
+    <h1>{{survey_name}}</h1><br>
+    {% if length == 0 %}
+        <h2>No Records</h2><br>
+    {% else %}
+        <table>
+            <tr>
+                <th><h2>Entry Identification</h2></th>
+            </tr>
+            {% for entry in ls %}
+                <tr>
+                    <td><h3>{{entry.to_str}}</h3></td>
+                    <td>
+                        <br><form method = "post" action = "http://127.0.0.1:8000/carbon_emissions_calculator/survey={{survey_name}}/entry={{entry.id}}/">
+                            {% csrf_token %}
+                            <button type="submit", name="save" class = "btn btn-info">View</button>
+                        </form><br>
+                    </td>
+                </tr>
+            {%endfor%}
+        </table><br><br>
+    {% endif %}
+    <form method = "post" action = "http://127.0.0.1:8000/carbon_emissions_calculator/all_surveys/">
+        {% csrf_token %}
+        <button type="submit", name="save" class = "btn btn-primary">Back to All Surveys</button><br>
+    </form><br>
+            
+{% endblock %}

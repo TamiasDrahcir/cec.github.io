@@ -1,0 +1,36 @@
+{%extends 'cec/base.html'%}
+
+{% block title %} Survey - Plane {% endblock %}
+
+{% block content %} 
+<h2>Plane Survey</h2>
+
+<br><br><form method="post" action= "http://127.0.0.1:8000/carbon_emissions_calculator/entry_done/" class="form-group">
+    {% csrf_token %}
+    <h4>{{form.as_p}}</h4>
+    <h4><input type="text" name="departure" id="departure" list="airports" placeholder="Please enter airport of departure" class = "form-control" required></h4>
+    <datalist id="airports">
+        {% for airport in airports %}
+            <option value="{{airport.output}}"></option>
+        {% endfor %}
+    </datalist>
+
+    <h4><input type="text" name="arrival" id="arrival" list="airports" placeholder="Please enter airport of arrival" class = "form-control" required></h4>
+    <datalist id="airports">
+        {% for airport in airports %}
+            <option value="{{airport.output}}"></option>
+        {% endfor %}
+    </datalist><br>
+    <div class="input-group mb-3">
+        <button type="submit", name="save" class="btn btn-success">Create New Entry</button>
+    </div>
+</form>
+
+<form method="post" action= "http://127.0.0.1:8000/carbon_emissions_calculator/new_entry/" class="form-group">
+    {% csrf_token %}
+    <div class="input-group mb-3">
+        <button type="submit", name="save" class="btn btn-primary">Choose another way of transportation</button>
+    </div>
+</form>
+
+{% endblock %}

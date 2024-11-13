@@ -1,0 +1,48 @@
+{% extends 'cec/base.html' %}
+
+{% block title %}
+Survey Entry
+{% endblock %}
+
+{% block content %}
+<table>
+    <tr>
+        <td><h2><br>Survey</h2><br></td>
+        <td><h2><br>{{n}}</h2><br></td>
+    </tr>
+    <tr>
+        <td><h3><br>Name</h3><br></td>
+        <td><h3><br>{{s.name}}</h3><br></td>
+    </tr>
+    <tr>
+        <td><h3><br>Cohort</h3><br></td>
+        <td><h3><br>{{s.cohort}}</h3><br></td>
+    </tr>
+    <tr>
+        <td><h3><br>Transportation</h3><br></td>
+        <td><h3><br>{{s.transportation}}</h3><br></td>
+    </tr>
+    <tr>
+        <td><h3><br>Start</h3><br></td>
+        <td><h3><br>{{s.start}}</h3><br></td>
+    </tr>
+    <tr>
+        <td><h3><br>End</h3><br></td>
+        <td><h3><br>{{s.end}}</h3><br></td>
+    </tr>
+    <tr>
+        <td><h3><br>Identification</h3><br></td>
+        <td><h3><br>{{s.identification}}</h3><br></td>
+    </tr>
+    <tr>
+        <td><h3><br>Emissions</h3><br></td>
+        <td><h3><br>{{s.carbon_emissions}} kgCO2e</h3><br></td>
+    </tr>
+</table>
+
+<br><br><br>
+<form method = "post" action = "http://127.0.0.1:8000/carbon_emissions_calculator/survey={{n}}/all/">
+    {% csrf_token %}
+    <button type="submit", name="save" class = "btn btn-primary">Back</button>
+</form>
+{% endblock %}
